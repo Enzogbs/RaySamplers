@@ -1,19 +1,31 @@
+"""
+Custom Samplers Package for Nerfstudio
+"""
+
 from custom_samplers.samplers import (
-    AdaptiveKernelSampler,
-    AdaptiveKernelSamplerConfig,
+    AdaptiveKernelSamplerV2,
+    AdaptiveKernelSamplerV3,
     L0Sampler,
-    L0SamplerConfig,
-)
-from custom_samplers.model import (
-    CustomNerfModel,
-    CustomNerfModelConfig,
+    GMMSampler,
+    OptimalTransportSampler,
+    EntropyKDESampler,
+    WaveletHierarchicalSampler,
+    KernelTiltedSampler,
+    SAMPLER_REGISTRY,
+    create_sampler,
 )
 
 __all__ = [
-    "AdaptiveKernelSampler",
-    "AdaptiveKernelSamplerConfig",
-    "L0Sampler",
-    "L0SamplerConfig",
-    "CustomNerfModel",
-    "CustomNerfModelConfig",
+    'AdaptiveKernelSamplerV2',
+    'AdaptiveKernelSamplerV3',
+    'L0Sampler',
+    'GMMSampler',
+    'OptimalTransportSampler',
+    'EntropyKDESampler',
+    'WaveletHierarchicalSampler',
+    'KernelTiltedSampler',
+    'SAMPLER_REGISTRY',
+    'create_sampler',
 ]
+
+__version__ = '1.0.0'
