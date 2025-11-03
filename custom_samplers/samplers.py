@@ -26,7 +26,8 @@ class AdaptiveKernelSamplerV2(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples)  # ✅ Only pass num_samples
+        self.single_jitter = single_jitter 
         self.kernel_type = kwargs.get('kernel_type', 'epanechnikov')
         self.use_blur = kwargs.get('use_blur', True)
     
@@ -135,7 +136,8 @@ class AdaptiveKernelSamplerV3(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples=num_samples)
+        self.single_jitter = single_jitter
         self.kernel_type = kwargs.get('kernel_type', 'gaussian')
         self.N_samples_min = kwargs.get('N_samples_min', num_samples // 4)
         self.N_samples_max = kwargs.get('N_samples_max', num_samples)
@@ -254,7 +256,8 @@ class L0Sampler(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples=num_samples)
+        self.single_jitter = single_jitter
         self.use_blur = kwargs.get('use_blur', True)
         self.spline_type = kwargs.get('spline_type', 'exp')
     
@@ -359,7 +362,8 @@ class GMMSampler(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples=num_samples)
+        self.single_jitter = single_jitter
         self.K = kwargs.get('K', 4)
     
     def generate_ray_samples(
@@ -439,7 +443,8 @@ class OptimalTransportSampler(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples=num_samples)
+        self.single_jitter = single_jitter
     
     def generate_ray_samples(
         self,
@@ -524,7 +529,8 @@ class EntropyKDESampler(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples=num_samples)
+        self.single_jitter = single_jitter
         self.N_samples_min = kwargs.get('N_samples_min', 8)
         self.N_samples_max = kwargs.get('N_samples_max', 64)
         self.kernel_type = kwargs.get('kernel_type', 'gaussian')
@@ -625,7 +631,8 @@ class WaveletHierarchicalSampler(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples=num_samples)
+        self.single_jitter = single_jitter
         self.levels = kwargs.get('levels', 3)
     
     def generate_ray_samples(
@@ -750,7 +757,8 @@ class KernelTiltedSampler(Sampler):
     """
     
     def __init__(self, num_samples: int = 64, single_jitter: bool = True, **kwargs):
-        super().__init__(num_samples=num_samples, single_jitter=single_jitter)
+        super().__init__(num_samples=num_samples)
+        self.single_jitter = single_jitter
         self.kernel = kwargs.get('kernel', 'gaussian')
         self.sigma = kwargs.get('sigma', 0.1)
     
@@ -912,3 +920,4 @@ ABLATION STUDIES:
 - Entropy adaptation: v2 vs v3
 
 """)
+
